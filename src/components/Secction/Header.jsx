@@ -21,7 +21,8 @@ export default function Header() {
           </HeaderP>
 
           <BtnWrapper>
-            <FullButton title="¡Contáctanos!" />
+        <FullButton title="¡Contáctanos!" background="#2D2D2D" />
+
           </BtnWrapper>
         </div>
       </LeftSide>
