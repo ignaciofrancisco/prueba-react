@@ -1,70 +1,50 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-scroll";
-// Components
+import { NavLink } from "react-router-dom"; // Solo importamos NavLink ahora
+
 import Sidebar from "./Sidebar";
 import '../../app.css';
-
 import Backdrop from "../Elements/Backdrop";
-// Assets
 import LogoIcon from "../../svg/Logo";
 import BurgerIcon from "../../svg/BurgerIcon";
-
 
 export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);
   const [sidebarOpen, toggleSidebar] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => setY(window.scrollY));
-    return () => {
-      window.removeEventListener("scroll", () => setY(window.scrollY));
-    };
-  }, [y]);
-
+    const handleScroll = () => setY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
       <Wrapper className="flexCenter animate whiteBg" style={y > 100 ? { height: "60px" } : { height: "80px" }}>
-        <NavInner className="container flexSpaceBetween"> {/* Cambiamos a flexSpaceBetween */}
-          <Link className="pointer flexNullCenter" to="home" smooth={true}>
+        <NavInner className="container flexSpaceBetween">
+          <StyledLink to="/" className="pointer flexNullCenter">
             <LogoIcon />
             <h1 style={{ marginLeft: "5px" }} className="font30 extraBold">
               Terrasol Parcelas
             </h1>
-          </Link>
+          </StyledLink>
           <UlWrapper className="flexNullCenter">
             <li className="semiBold font15 pointer">
-              <Link activeClass="active" style={{ padding: "10px 15px" }} to="home" spy={true} smooth={true} offset={-80}>
-                Inicio
-              </Link>
+              <StyledNavLink to="/" end>Inicio</StyledNavLink>
             </li>
-
-            {/* Dropdown para Parcelas */}
             <li className="semiBold font15 pointer dropdown" style={{ position: "relative" }}>
-              <span style={{ padding: "10px 15px", cursor: "pointer" }}>
-                Parcelas
-              </span>
-      
-            </li>
-
-
-            <li className="semiBold font15 pointer">
-              <Link activeClass="active" style={{ padding: "10px 15px" }} to="nosotros" spy={true} smooth={true} offset={-80}>
-                Nosotros
-              </Link>
+              <StyledNavLink to="/parcelas">Parcelas</StyledNavLink>
             </li>
             <li className="semiBold font15 pointer">
-              <Link activeClass="active" style={{ padding: "10px 15px" }} to="preguntas_frecuentes" spy={true} smooth={true} offset={-80}>
-                Preguntas Frecuentes
-              </Link>
+              <StyledNavLink to="/nosotros">Nosotros</StyledNavLink>
             </li>
             <li className="semiBold font15 pointer">
-              <Link activeClass="active" style={{ padding: "10px 15px" }} to="contacto" spy={true} smooth={true} offset={-80}>
-                Contacto
-              </Link>
+              <StyledNavLink to="/PreguntasFrecuentes">Preguntas Frecuentes</StyledNavLink>
+            </li>
+            <li className="semiBold font15 pointer">
+              <StyledNavLink to="/contacto">Contacto</StyledNavLink>
             </li>
           </UlWrapper>
           <BurderWrapper className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
@@ -76,6 +56,7 @@ export default function TopNavbar() {
   );
 }
 
+// --- ESTILOS ---
 const Wrapper = styled.nav`
   width: 100%;
   position: fixed;
@@ -83,16 +64,18 @@ const Wrapper = styled.nav`
   left: 0;
   z-index: 999;
 `;
+
 const NavInner = styled.div`
   position: relative;
   height: 100%;
   display: flex;
-  justify-content: space-between; /* Cambiamos a space-between */
-  align-items: center; /* Para alinear verticalmente los elementos */
-`
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const BurderWrapper = styled.button`
   outline: none;
-  border: 0px;
+  border: 0;
   background-color: transparent;
   height: 100%;
   padding: 0 15px;
@@ -102,18 +85,40 @@ const BurderWrapper = styled.button`
   }
 `;
 
-const UlWrapperRight = styled.ul`
-  @media (max-width: 760px) {
-    display: none;
-  }
-`;
 const UlWrapper = styled.ul`
   display: flex;
-  align-items: center; /* Para alinear verticalmente los items del menú */
+  align-items: center;
   li {
-    font-size: 18px; /* Aumenta aquí el tamaño */
+    font-size: 18px;
   }
   @media (max-width: 760px) {
     display: none;
   }
 `;
+
+const StyledLink = styled.div` // Mantén esto si es necesario para el logo
+  color: black;
+  text-decoration: none;
+  padding: 10px 15px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const StyledNavLink = styled(NavLink)`
+  color: black;
+  text-decoration: none;
+  padding: 10px 15px;
+
+  &.active {
+    color: #ffbf00; /* Color activo */
+    border-bottom: 2px solid #ffbf00; /* Línea debajo del enlace activo */
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+

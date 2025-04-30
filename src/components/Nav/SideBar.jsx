@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom"; // <- usamos react-router-dom ahora
+
 // Assets
 import CloseIcon from "../../svg/CloseIcon";
 import LogoIcon from "../../svg/Logo";
@@ -15,42 +16,31 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             Parcelas Terrasol
           </h1>
         </div>
-        <CloseBtn onClick={() => toggleSidebar(!sidebarOpen)} className="animate pointer">
+        <CloseBtn onClick={() => toggleSidebar(false)} className="animate pointer">
           <CloseIcon />
         </CloseBtn>
       </SidebarHeader>
 
       <UlStyle className="flexNullCenter flexColumn">
         {[
-          { to: "home", label: "inicio" },
-          { to: "services", label: "Parcelas" },
-          { to: "projects", label: "Nosotros" },
-          { to: "blog", label: "Preguntas Frecuentes" },
-          { to: "pricing", label: "Contacto" },
+          { to: "/", label: "Inicio" },
+          { to: "/parcelas", label: "Parcelas" },
+          { to: "/nosotros", label: "Nosotros" },
+          { to: "/PreguntasFrecuentes", label: "Preguntas Frecuentes" },
+          { to: "/contacto", label: "Contacto" },
         ].map(({ to, label }) => (
           <li key={to} className="semiBold font15 pointer">
-            <Link
-              onClick={() => toggleSidebar(!sidebarOpen)}
-              activeClass="active"
-              className="whiteColor"
-              style={{ padding: "10px 15px" }}
-              to={to}
-              spy={true}
-              smooth={true}
-              offset={-60}
-            >
+            <StyledLink to={to} onClick={() => toggleSidebar(false)}>
               {label}
-            </Link>
+            </StyledLink>
           </li>
         ))}
       </UlStyle>
-
-
     </Wrapper>
   );
 }
 
-// ------ ESTILOS CORREGIDOS ------
+// ----- ESTILOS -----
 const Wrapper = styled.nav.withConfig({
   shouldForwardProp: (prop) => prop !== "sidebarOpen",
 })`
@@ -60,9 +50,9 @@ const Wrapper = styled.nav.withConfig({
   top: 0;
   padding: 0 30px;
   right: ${(props) => (props.sidebarOpen ? "0px" : "-400px")};
-  transition: right 0.3s ease; /* <-- Añadí transición para animar */
+  transition: right 0.3s ease;
   z-index: 9999;
-  background-color: #111; /* Para que se vea el fondo oscuro */
+  background-color: #111;
   @media (max-width: 400px) {
     width: 100%;
   }
@@ -79,11 +69,20 @@ const CloseBtn = styled.button`
   padding: 10px;
 `;
 
-
 const UlStyle = styled.ul`
   padding: 40px;
   li {
     margin: 20px 0;
-    font-size: 25px; /* <-- Aquí puedes cambiar el tamaño */
+    font-size: 25px;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+
+  &:hover {
+    text-decoration: underline;
   }
 `;

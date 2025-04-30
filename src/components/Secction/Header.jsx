@@ -1,19 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";  // Importa Link
 // Assets
 import HeaderImage from "../../assets/img/header-img.png";
-import FullButton from "../Buttons/FullButton";
 import QuotesIcon from "../../svg/Quotes";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
 
 export default function Header() {
   return (
     <Wrapper id="home" className="container flexSpaceCenter">
       <LeftSide className="flexCenter">
         <div>
-          <h1 className="extraBold font60" style={{ marginBottom: "20px" }}>
+          <h1
+            className="extraBold font60"
+            style={{ marginBottom: "10px", marginTop: "-250px" }} // Ajusta el valor según lo que necesites
+          >
             ¡Estás a un clic del proyecto que buscas!
           </h1>
-          <br />
+
           <HeaderP className="font23 semiBold text-justify">
             "Estás a un paso de transformar tus ideas en soluciones reales; en
             cada línea de código, trabajamos para acercarte al éxito que
@@ -21,9 +26,23 @@ export default function Header() {
           </HeaderP>
 
           <BtnWrapper>
-        <FullButton title="¡Contáctanos!" background="#2D2D2D" />
-
+            <Link to="/contacto" style={{ textDecoration: "none" }}>
+              <Button
+                variant="contained"
+                endIcon={<SendIcon />}
+                sx={{
+                  backgroundColor: "#2D2D2D",
+                  "&:hover": { backgroundColor: "#1a1a1a" },
+                  borderRadius: "8px",
+                  padding: "10px 20px",
+                  fontWeight: "bold",
+                }}
+              >
+                ¡Contáctanos!
+              </Button>
+            </Link>
           </BtnWrapper>
+
         </div>
       </LeftSide>
       <RightSide>
@@ -32,7 +51,7 @@ export default function Header() {
             className="radius8"
             src={HeaderImage}
             alt="office"
-            style={{ zIndex: 9 }}
+            style={{ zIndex: 10, marginTop: "-100px" }}  // Ajusta el valor de marginTop aquí
           />
           <QuoteWrapper className="flexCenter darkBg radius8">
             <QuotesWrapper>
@@ -56,6 +75,7 @@ export default function Header() {
 }
 
 // Styled Components
+
 const Wrapper = styled.section`
   padding-top: 80px;
   width: 100%;
@@ -80,7 +100,7 @@ const LeftSide = styled.div`
     justify-content: center;
   }
   @media (max-width: 560px) {
-    margin: 80px 0 50px 0;
+    margin: 40px 0 50px 0; /* Reduje el margen superior para subir el texto */
   }
 `;
 
@@ -97,7 +117,7 @@ const RightSide = styled.div`
 
 const HeaderP = styled.div`
   max-width: 470px;
-  padding: 15px 0 50px 0;
+  padding: 0 0 50px 0; /* Eliminé más espacio en la parte superior */
   line-height: 1.5rem;
   @media (max-width: 960px) {
     text-align: center;
@@ -124,7 +144,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Img = styled.img`
-  width: 80%;
+  width: 60%;
   height: auto;
 
   @media (max-width: 960px) {
@@ -135,7 +155,6 @@ const Img = styled.img`
     width: 80%;
   }
 `;
-
 
 const QuoteWrapper = styled.div`
   position: absolute;
@@ -159,4 +178,3 @@ const QuotesWrapper = styled.div`
   left: -20px;
   top: -10px;
 `;
-
