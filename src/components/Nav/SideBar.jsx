@@ -11,9 +11,8 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
     <Wrapper className="animate darkBg" sidebarOpen={sidebarOpen}>
       <SidebarHeader className="flexSpaceCenter">
         <div className="flexNullCenter">
-          <LogoIcon />
           <h1 className="whiteColor font21" style={{ marginLeft: "15px" }}>
-            Parcelas Terrasol
+            Municipalidad CholChol
           </h1>
         </div>
         <CloseBtn onClick={() => toggleSidebar(false)} className="animate pointer">
@@ -24,8 +23,8 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
       <UlStyle className="flexNullCenter flexColumn">
         {[
           { to: "/", label: "Inicio" },
-          { to: "/parcelas", label: "Parcelas" },
-          { to: "/nosotros", label: "Nosotros" },
+          { to: "/parcelas", label: "Municipio" },
+          { to: "/nosotros", label: "Unidades Municipales" },
           { to: "/PreguntasFrecuentes", label: "Preguntas Frecuentes" },
           { to: "/contacto", label: "Contacto" },
         ].map(({ to, label }) => (

@@ -1,17 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TopNavbar from "../Nav/TopNavBar";
+import { useLocation } from "react-router-dom";
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const Contacto = () => {
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
     direccion: "",
+    motivo: "",
     mensaje: "",
     aceptaTerminos: false,
   });
 
   const [resultado, setResultado] = useState("");
+
+  const query = useQuery();
+  const unidadDesdeURL = query.get("motivo");
+
+  useEffect(() => {
+    if (unidadDesdeURL) {
+      setFormData((prev) => ({ ...prev, motivo: unidadDesdeURL }));
+    }
+  }, [unidadDesdeURL]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -28,6 +43,7 @@ const Contacto = () => {
       formData.nombre &&
       formData.email &&
       formData.mensaje &&
+      formData.motivo &&
       formData.aceptaTerminos
     ) {
       setResultado("✅ Mensaje enviado exitosamente.");
@@ -77,10 +93,32 @@ const Contacto = () => {
           </label>
 
           <label>
+            Motivo de Consulta:
+            <select
+              name="motivo"
+              value={formData.motivo}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Seleccione una unidad</option>
+              <option value="Alcaldía">Alcaldía</option>
+              <option value="Secretaría Municipal">Secretaría Municipal</option>
+              <option value="Dirección de Desarrollo Comunitario (DIDECO)">Dirección de Desarrollo Comunitario (DIDECO)</option>
+              <option value="Dirección de Obras Municipales (DOM)">Dirección de Obras Municipales (DOM)</option>
+              <option value="Finanzas">Finanzas</option>
+              <option value="Tránsito y Transporte Público">Tránsito y Transporte Público</option>
+              <option value="Medio Ambiente, Aseo y Ornato">Medio Ambiente, Aseo y Ornato</option>
+              <option value="OMIL (Oficina Municipal de Información Laboral)">OMIL (Oficina Municipal de Información Laboral)</option>
+              <option value="Cultura, Deportes y Juventud">Cultura, Deportes y Juventud</option>
+              <option value="otro">Otro</option>
+            </select>
+          </label>
+
+          <label>
             Mensaje:
             <textarea
               name="mensaje"
-              rows="4"
+              rows="3"
               value={formData.mensaje}
               onChange={handleChange}
               required
@@ -139,6 +177,7 @@ const Formulario = styled.form`
 
   input[type="text"],
   input[type="email"],
+  select,
   textarea {
     padding: 10px;
     border-radius: 8px;

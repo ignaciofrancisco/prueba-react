@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom"; // Solo importamos NavLink ahora
+import { Link, NavLink } from "react-router-dom";
 
 import Sidebar from "./Sidebar";
 import '../../app.css';
@@ -22,32 +22,32 @@ export default function TopNavbar() {
     <>
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
-      <Wrapper className="flexCenter animate whiteBg" style={y > 100 ? { height: "60px" } : { height: "80px" }}>
-        <NavInner className="container flexSpaceBetween">
-          <StyledLink to="/" className="pointer flexNullCenter">
-            <LogoIcon />
-            <h1 style={{ marginLeft: "5px" }} className="font30 extraBold">
-              Terrasol Parcelas
-            </h1>
-          </StyledLink>
-          <UlWrapper className="flexNullCenter">
-            <li className="semiBold font15 pointer">
+      <Wrapper style={y > 100 ? { height: "60px" } : { height: "80px" }}>
+        <NavInner>
+          <LeftBlock to="/" className="pointer">
+          <Logo />
+            <Title>MUNICIPALIDAD DE CHOLCHOL</Title>
+          </LeftBlock>
+
+          <UlWrapper>
+            <li>
               <StyledNavLink to="/" end>Inicio</StyledNavLink>
             </li>
-            <li className="semiBold font15 pointer dropdown" style={{ position: "relative" }}>
-              <StyledNavLink to="/parcelas">Parcelas</StyledNavLink>
+            <li>
+              <StyledNavLink to="/parcelas">Municipio</StyledNavLink>
             </li>
-            <li className="semiBold font15 pointer">
-              <StyledNavLink to="/nosotros">Nosotros</StyledNavLink>
+            <li>
+              <StyledNavLink to="/nosotros">Unidades Municipales</StyledNavLink>
             </li>
-            <li className="semiBold font15 pointer">
+            <li>
               <StyledNavLink to="/PreguntasFrecuentes">Preguntas Frecuentes</StyledNavLink>
             </li>
-            <li className="semiBold font15 pointer">
+            <li>
               <StyledNavLink to="/contacto">Contacto</StyledNavLink>
             </li>
           </UlWrapper>
-          <BurderWrapper className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
+
+          <BurderWrapper onClick={() => toggleSidebar(!sidebarOpen)}>
             <BurgerIcon />
           </BurderWrapper>
         </NavInner>
@@ -63,62 +63,84 @@ const Wrapper = styled.nav`
   top: 0;
   left: 0;
   z-index: 999;
+  background: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+  font-family: 'Khula', sans-serif;
 `;
 
 const NavInner = styled.div`
-  position: relative;
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 2rem;
 `;
 
-const BurderWrapper = styled.button`
-  outline: none;
-  border: 0;
-  background-color: transparent;
-  height: 100%;
-  padding: 0 15px;
-  display: none;
-  @media (max-width: 760px) {
-    display: block;
+const LeftBlock = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+`;
+
+const Title = styled.h1`
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: 'Khula', sans-serif;
+
+  @media (max-width: 480px) {
+    font-size: 20px;
   }
 `;
 
 const UlWrapper = styled.ul`
   display: flex;
   align-items: center;
+  gap: 20px;
+  list-style: none;
+
   li {
-    font-size: 18px;
+    font-size: 17px;
+    transition: all 0.3s ease;
   }
+
   @media (max-width: 760px) {
     display: none;
   }
 `;
 
-const StyledLink = styled.div` // Mantén esto si es necesario para el logo
-  color: black;
-  text-decoration: none;
-  padding: 10px 15px;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
 const StyledNavLink = styled(NavLink)`
-  color: black;
+  color: #ffffff;
   text-decoration: none;
   padding: 10px 15px;
+  font-family: 'Khula', sans-serif;
+  transition: color 0.3s ease;
 
   &.active {
-    color: #ffbf00; /* Color activo */
-    border-bottom: 2px solid #ffbf00; /* Línea debajo del enlace activo */
+    color: #d4af37;
   }
 
   &:hover {
-    text-decoration: underline;
+    color: #d4af37;
   }
 `;
 
+const BurderWrapper = styled.button`
+  background: transparent;
+  border: none;
+  height: 100%;
+  padding: 0 15px;
+  display: none;
+  color: white;
 
+  @media (max-width: 760px) {
+    display: block;
+  }
+`;
+const Logo = styled(LogoIcon)`
+  width: 60px;
+  height: auto;
+`;

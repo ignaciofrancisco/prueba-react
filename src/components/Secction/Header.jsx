@@ -16,7 +16,7 @@ export default function Header() {
             className="extraBold font60"
             style={{ marginBottom: "10px", marginTop: "-250px" }} // Ajusta el valor según lo que necesites
           >
-            ¡Estás a un clic del proyecto que buscas!
+            ¡Estás a un clic del proyecto que buscas! <br></br>
           </h1>
 
           <HeaderP className="font23 semiBold text-justify">

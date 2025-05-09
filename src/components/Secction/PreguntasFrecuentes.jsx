@@ -6,26 +6,33 @@ import styled from "styled-components";
 const PreguntasFrecuentes = () => {
   const preguntas = [
     {
-      pregunta: "¿Qué tipo de parcelas ofrece Terrasol?",
+      pregunta: "¿Dónde se encuentra ubicada la Municipalidad de Cholchol?",
       respuesta:
-        "En Terrasol ofrecemos parcelas de diferentes tamaños y ubicaciones, tanto para uso residencial como comercial. Nuestras propiedades están seleccionadas para brindarte la mejor experiencia en conexión con la naturaleza.",
+        "La Municipalidad de Cholchol está ubicada en Calle José Joaquín Pérez 449, Cholchol, Región de La Araucanía, Chile. Puedes comunicarte al teléfono +56 45 2734200 para más información.",
     },
     {
-      pregunta: "¿Cómo puedo comprar una parcela?",
+      pregunta: "¿Cuáles son los horarios de atención al público?",
       respuesta:
-        "Puedes adquirir una parcela contactándonos directamente a través de nuestro sitio web, redes sociales o llamando a nuestro equipo de ventas. Te acompañamos en cada paso del proceso para asegurar una compra segura y clara.",
+        "El horario de atención al público es de lunes a viernes, desde las 08:30 hasta las 14:00 horas.",
     },
     {
-      pregunta: "¿Ofrecen financiamiento?",
+      pregunta: "¿Cómo puedo obtener información sobre licencias de conducir en Cholchol?",
       respuesta:
-        "Sí, contamos con opciones de financiamiento directo sin necesidad de pasar por bancos. Nuestro equipo te guiará para encontrar la opción que mejor se adapte a tus necesidades.",
+        "Actualmente, la Municipalidad de Cholchol no tiene la facultad para emitir licencias de conducir. Para realizar este trámite, debes dirigirte a la municipalidad más cercana que ofrezca este servicio.",
     },
     {
-      pregunta: "¿Puedo visitar las parcelas antes de comprar?",
+      pregunta: "¿Dónde puedo pagar el permiso de circulación en Cholchol?",
       respuesta:
-        "Por supuesto. Coordinamos visitas guiadas para que conozcas en terreno las características de cada parcela antes de tomar una decisión.",
+        "Puedes pagar tu permiso de circulación en las oficinas de la Municipalidad de Cholchol o a través de plataformas en línea habilitadas para este propósito. Asegúrate de tener al día tu revisión técnica, seguro obligatorio y el último permiso de circulación cancelado.",
+    },
+    {
+      pregunta: "¿Qué servicios ofrece la Oficina Municipal de Información Laboral (OMIL) en Cholchol?",
+      respuesta:
+        "La OMIL de Cholchol ofrece servicios de intermediación laboral, orientación y capacitación para mejorar las oportunidades de empleo de los habitantes de la comuna.",
     },
   ];
+
+
 
   const [activa, setActiva] = useState(null);
 
@@ -38,8 +45,9 @@ const PreguntasFrecuentes = () => {
       <TopNavbar />
       <Wrapper>
         <HeaderSection>
-          <h1>Preguntas Frecuentes</h1>
-          <p>Resuelve tus dudas sobre nuestras parcelas y servicios</p>
+        <h1>Preguntas Frecuentes</h1>
+        <p>Resuelve tus dudas sobre los servicios, trámites y atención de la Municipalidad de Cholchol</p>
+
         </HeaderSection>
 
         <ContentSection>

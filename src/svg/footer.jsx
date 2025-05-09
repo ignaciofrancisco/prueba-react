@@ -1,5 +1,6 @@
 import * as React from "react";
-import Logofooter from "../assets/img/footer.png";
+import Logofooter from "../../assets/img/tree.png";
+
 
 function SvgComponent(props) {
   return (
