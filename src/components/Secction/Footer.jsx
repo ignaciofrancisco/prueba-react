@@ -5,7 +5,7 @@ import Logofooter from "../../assets/img/tree.png";
 import { IconButton } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from '@mui/icons-material/Facebook';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 import CallIcon from '@mui/icons-material/Call';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EmailIcon from '@mui/icons-material/Email';
@@ -13,11 +13,14 @@ import EmailIcon from '@mui/icons-material/Email';
 const Wrapper = styled.footer`
   width: 100%;
   background: #fff;
-  padding: -60px 130px;  /* Ajusté el padding para hacer el footer más compacto */
+  padding: 20px 130px; /* Ajusté el padding para dar más espacio */
   color: #333;
   font-family: 'Khula', sans-serif;
-  border-top: 3px solid #ffbf00; /* Línea amarilla */
-  margin-top: 30px;  /* Deja un espacio entre el contenido y el footer */
+  border-top: 3px solid #ffbf00;
+  margin-top: 30px;
+  @media (max-width: 768px) {
+    padding: 20px 20px; /* Reduje el padding en pantallas pequeñas */
+  }
 `;
 
 const Container = styled.div`
@@ -40,10 +43,14 @@ const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px; /* Espacio adicional entre el logo y el contenido */
+  margin-top: 10px;
   img {
-    width: 100px; /* Reduje el tamaño del logo */
+    width: 100px;
     margin-bottom: 10px;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
   }
 `;
 
@@ -52,6 +59,11 @@ const RightSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  @media (max-width: 768px) {
+    margin-top: 0; /* Ajuste para pantallas pequeñas */
+    align-items: center;
+  }
 `;
 
 const InfoRow = styled.div`
@@ -73,12 +85,20 @@ const InfoRow = styled.div`
   &:hover span {
     color: #ffbf00;
   }
+
+  @media (max-width: 768px) {
+    font-size: 12px; /* Reducir tamaño de fuente en pantallas pequeñas */
+  }
 `;
 
 const SocialIcons = styled.div`
   display: flex;
   gap: 10px;
   margin-top: 10px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px; /* Ajuste en dispositivos pequeños */
+  }
 `;
 
 const StyledIconButton = styled(IconButton)`
@@ -92,25 +112,41 @@ const StyledIconButton = styled(IconButton)`
 `;
 
 const Copyright = styled.p`
-
   text-align: center;
   font-size: 12px;
   color: #888;
-  margin-top: 0 px;
+  margin-top: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 10px; /* Ajuste de tamaño de fuente para móviles */
+    margin-top: 20px;
+  }
 `;
 
 export default function Footer() {
   return (
     <Wrapper>
       <Container>
-        <LeftSection>
-          <img src={Logofooter} alt="Logo Municipalidad" />
-          <SocialIcons>
-            <StyledIconButton><InstagramIcon /></StyledIconButton>
-            <StyledIconButton><FacebookIcon /></StyledIconButton>
-            <StyledIconButton><WhatsAppIcon /></StyledIconButton>
-          </SocialIcons>
-        </LeftSection>
+      <LeftSection>
+        <img src={Logofooter} alt="Logo Municipalidad" />
+        <SocialIcons>
+          <StyledIconButton
+            onClick={() => window.open("https://www.instagram.com/municholchol_oficial/", "_blank")}
+          >
+            <InstagramIcon />
+          </StyledIconButton>
+          <StyledIconButton
+            onClick={() => window.open("https://www.facebook.com/profile.php?id=100065025870874", "_blank")}
+          >
+            <FacebookIcon />
+          </StyledIconButton>
+          <StyledIconButton
+            onClick={() => window.open("https://www.youtube.com/@MunicipalidaddeCholcholOficial/streams", "_blank")} // Reemplaza con el número de WhatsApp correcto
+          >
+            <YouTubeIcon />
+          </StyledIconButton>
+        </SocialIcons>
+      </LeftSection>
 
         <RightSection>
           <InfoRow>

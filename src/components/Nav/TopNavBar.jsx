@@ -66,9 +66,11 @@ const Wrapper = styled.nav`
   background: rgba(0, 0, 0, 0.85);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(3px); /* Ajusta el valor del blur si lo deseas */
   font-family: 'Khula', sans-serif;
 `;
+
+
 
 const NavInner = styled.div`
   height: 100%;

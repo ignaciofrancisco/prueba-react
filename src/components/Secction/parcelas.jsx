@@ -4,7 +4,11 @@ import TopNavbar from "../Nav/TopNavBar";
 import alcaldeImg from "../../assets/img/alcalde.jpg";
 import concejoImg from "../../assets/img/concejo.jpg";
 import organigramaImg from "../../assets/img/organigrama.jpg";
-import Slider from "react-slick";
+import imagen1 from "../../assets/img/cruce_en_balsa.jpg";
+import imagen2 from "../../assets/img/puentesdesdeabajoinvierno.jpg";
+import imagen3 from "../../assets/img/rukabuena.jpg";
+import imagen4 from "../../assets/img/puenteviejo.jpg";
+
 
 const Municipio = () => {
   // Estado para las secciones abiertas
@@ -282,16 +286,27 @@ const Municipio = () => {
 
         {/* Sección de Historia */}
         <Section>
-          <SectionTitle onClick={() => toggleSection("historia")}>Historia de Cholchol</SectionTitle>
-          {openSection === "historia" && (
-            <p>
-              Cholchol es una comuna rica en historia, con una fuerte identidad
-              cultural y un legado de lucha y progreso. A lo largo de los años, la
-              comuna ha experimentado un notable crecimiento y hoy en día se
-              destaca por su comunidad unida y sus paisajes naturales.
-            </p>
-          )}
-        </Section>
+  <SectionTitle onClick={() => toggleSection("historia")}>Historia de Cholchol</SectionTitle>
+  {openSection === "historia" && (
+    <>
+      <p>
+        Cholchol es una comuna rica en historia, con una fuerte identidad
+        cultural y un legado de lucha y progreso. A lo largo de los años, la
+        comuna ha experimentado un notable crecimiento y hoy en día se
+        destaca por su comunidad unida y sus paisajes naturales.
+      </p>
+
+      <ImageGallery>
+        <img src={imagen1} alt="Cholchol Paisaje 1" />
+        <img src={imagen2} alt="Cholchol Paisaje 2" />
+        <img src={imagen3} alt="Cholchol Paisaje 3" />
+        <img src={imagen4} alt="Cholchol Paisaje 4" />
+      </ImageGallery>
+    </>
+  )}
+</Section>
+
+
       </Wrapper>
     </>
   );
@@ -300,6 +315,21 @@ const Municipio = () => {
 export default Municipio;
 
 // --- ESTILOS ---
+// Estilos para las imágenes pequeñas al final de la historia
+const ImageGallery = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  
+  img {
+    width: 23%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+`;
+
+
 const Wrapper = styled.div`
   font-family: 'Khula', sans-serif;
   padding: 40px 20px;
